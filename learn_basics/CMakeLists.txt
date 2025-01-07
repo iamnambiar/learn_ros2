@@ -27,15 +27,21 @@ ament_target_dependencies(publisher_class ${dependencies})
 add_executable(subscriber_class src/subscriber_class.cpp)
 ament_target_dependencies(subscriber_class ${dependencies})
 
+add_executable(param_reader src/param_reader.cpp)
+ament_target_dependencies(param_reader ${dependencies})
+
 install(TARGETS
 	logger
 	logger_class
   publisher_class
   subscriber_class
+  param_reader
 	ARCHIVE DESTINATION lib
 	LIBRARY DESTINATION lib
 	RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
+
+install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
