@@ -28,6 +28,7 @@ include_directories(include)
 
 add_library(${PROJECT_NAME} SHARED
   src/learn_tf2_detector/ObstacleDetectorNode.cpp
+  src/learn_tf2_detector/ObstacleDetectorImprovedNode.cpp
   src/learn_tf2_detector/ObstacleMonitorNode.cpp
 )
 ament_target_dependencies(${PROJECT_NAME} ${dependencies})
@@ -36,9 +37,14 @@ add_executable(detector src/detector_main.cpp)
 ament_target_dependencies(detector ${dependencies})
 target_link_libraries(detector ${PROJECT_NAME})
 
+add_executable(detector_improved src/detector_improved.cpp)
+ament_target_dependencies(detector_improved ${dependencies})
+target_link_libraries(detector_improved ${PROJECT_NAME})
+
 install(TARGETS
   ${PROJECT_NAME}
   detector
+  detector_improved
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
